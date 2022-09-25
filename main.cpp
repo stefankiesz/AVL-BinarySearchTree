@@ -6,10 +6,10 @@ int main()
 {
 	cout << "test" << endl;
 	Tree myTree;
-	cout << myTree.insert(myTree.root, "Stefan", 69569915) << endl;
-	cout << myTree.insert(myTree.root, "BOB", 11112222) << endl;
-	cout << myTree.insert(myTree.root, "JOE", 22223333) << endl;
-	cout << myTree.insert(myTree.root, "HOE", 77778888) << endl;
+	cout << myTree.insert("Stefan", 69569915) << endl;
+	cout << myTree.insert("BOB", 11112222) << endl;
+	cout << myTree.insert("JOE", 22223333) << endl;
+	cout << myTree.insert("HOE", 77778888) << endl;
 
 
 	cout << myTree.root->left->myName << endl;

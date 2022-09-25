@@ -5,7 +5,7 @@ Tree::Tree()
 	root = nullptr;
 }
 
-bool Tree::insert(Node* root, string name, int id)
+bool Tree::inserter(Node* root, string name, int id)
 {
 	if (root == nullptr)
 	{
@@ -23,7 +23,7 @@ bool Tree::insert(Node* root, string name, int id)
 			root->left = new Node(name, id);
 			return true;
 		}
-		return insert(root->left, name, id);
+		return inserter(root->left, name, id);
 	}
 	else
 	{
@@ -32,9 +32,15 @@ bool Tree::insert(Node* root, string name, int id)
 			root->right = new Node(name, id);
 			return true;
 		}
-		return insert(root->right, name, id);
+		return inserter(root->right, name, id);
 	}
 }
+
+bool Tree::insert(string name, int id)
+{
+	return inserter(this->root, name, id);
+}
+
 
 void Tree::remove(int id)
 {
