@@ -13,7 +13,9 @@ public:
 	void printPreorder();
 	void printPostorder();
 	void printLevelCount();
-	
+	void removeInorder(int n);
+
+	void balanceTree();
 
 };
 
