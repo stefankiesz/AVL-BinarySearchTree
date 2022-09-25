@@ -3,11 +3,12 @@
 class Tree
 {
 public:
+	Node* root;
+
 	Tree();
 
-	void insert(string name, int id);
+	bool insert(Node* root, string name, int id);
 	void remove(int id);
-	void search(int id);
 	void search(int id);
 	void printInorder();
 	void printPreorder();
