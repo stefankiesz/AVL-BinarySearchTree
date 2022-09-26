@@ -119,11 +119,15 @@ bool Tree::remove(int id)
 	// (traversal does not work for root nodes)
 	
 	Node* parent = traversal(myRoot, id);
-	if (parent == nullptr) { return false; }
+	if (parent == nullptr)
+	{
+		cout << "unsuccessful" << endl;
+		return false;
+	}
 	Node* removeNode = nullptr;
 
 	// If node to remove is to the left of the identified parent
-	if (parent->left->myId == id)
+	if (parent->left != nullptr && parent->left->myId == id)
 	{
 		removeNode = parent->left;
 		// If there are not child nodes from the node to remove
@@ -131,6 +135,7 @@ bool Tree::remove(int id)
 		{
 			parent->left = nullptr;
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 		// If there is only one, left child node from the node to remove
@@ -138,6 +143,7 @@ bool Tree::remove(int id)
 		{
 			parent->left = removeNode->left;
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 		// If there is only one, right child node from the node to remove
@@ -145,6 +151,7 @@ bool Tree::remove(int id)
 		{
 			parent->left = removeNode->right;
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 		// If there are two nodes from the node to remove
@@ -159,6 +166,7 @@ bool Tree::remove(int id)
 				bruhParent->left = removeNode->left;
 				parent->left = bruhParent;
 				delete removeNode;
+				cout << "successful" << endl;
 				return true;
 			}
 
@@ -187,6 +195,7 @@ bool Tree::remove(int id)
 				bruhParent->left = nullptr;
 			}
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 		// TODO: can prob just have one return true at the end here
@@ -200,18 +209,21 @@ bool Tree::remove(int id)
 		{
 			parent->right = nullptr;
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 		else if (removeNode->left != nullptr && removeNode->right == nullptr)
 		{
 			parent->right = removeNode->left;
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 		else if (removeNode->right != nullptr && removeNode->left == nullptr)
 		{
 			parent->right = removeNode->right;
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 
@@ -229,6 +241,7 @@ bool Tree::remove(int id)
 				// of parent is the below line - reuse all the other code
 				parent->right = bruhParent;
 				delete removeNode;
+				cout << "successful" << endl;
 				return true;
 			}
 
@@ -256,6 +269,7 @@ bool Tree::remove(int id)
 				bruhParent->left = nullptr;
 			}
 			delete removeNode;
+			cout << "successful" << endl;
 			return true;
 		}
 		// TODO: can prob just have one return true at the end here
