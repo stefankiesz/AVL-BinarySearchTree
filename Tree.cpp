@@ -163,6 +163,8 @@ bool Tree::remove(int id)
 			}
 
 			// Case of there are node(s) to the left of the node directly right of Node to be removed
+			// TODO: the below line is also different between two large-scope cases (remove node being to the left/right of parent)
+			parent->left = bruhParent->left;
 			while (bruhParent->left->left != nullptr)
 			{
 				bruhParent = bruhParent->left;
@@ -231,6 +233,7 @@ bool Tree::remove(int id)
 			}
 
 			// Case of there are node(s) to the left of the node directly right of Node to be removed
+			parent->right = bruhParent->left;
 			while (bruhParent->left->left != nullptr)
 			{
 				bruhParent = bruhParent->left;
