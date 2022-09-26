@@ -9,7 +9,10 @@ public:
 
 	bool inserter(Node* root, string name, int id);
 	bool insert(string name, int id);
-	void remove(int id);
+
+	Node* traversal(Node* root, int id);
+
+	bool remove(int id);
 	void search(int id);
 	void printInorder();
 	void printPreorder();

@@ -19,17 +19,6 @@ bool Tree::inserter(Node* root, string name, int id)
 	}
 	if (root->myId > id)
 	{
-		cout << "id: " << id << endl;
-		cout << "RootVal: " << root->myId << endl;
-		if (root->left != nullptr)
-		{
-			cout << "LeftVal: " << root->left->myId << endl;
-		}
-		else
-		{
-			cout << "LeftVal NULL" << endl;
-		}
-
 		if (root->left == nullptr)
 		{
 			root->left = new Node(name, id);
@@ -83,11 +72,67 @@ bool Tree::insert(string name, int id)
 	return false;
 }
 
-
-void Tree::remove(int id)
+Node* Tree::traversal(Node* root, int id)
 {
-
+	if (root == nullptr)
+	{
+		return nullptr;
+	}
+	if (root->myId == id)
+	{
+		return root;
+	}
+	if (root->myId > id)
+	{
+		return traversal(root->left, id);
+	}
+	else
+	{
+		return traversal(root->right, id);
+	}
 }
+
+//bool Tree::remove(int id)
+//{
+//	if (root == nullptr)
+//	{
+//		cout << "unsuccessful" << endl;
+//		return false;
+//	}
+//	if (root->myId == id)
+//	{
+//
+//		return true;
+//	}
+//	if (root->myId > id)
+//	{
+//		if (root->left == nullptr)
+//		{
+//			root->left = new Node(name, id);
+//			return true;
+//		}
+//		else if (root->left->myId == id)
+//		{
+//			cout << "ID already in system!" << endl;
+//			return false;
+//		}
+//		return inserter(root->left, name, id);
+//	}
+//	else
+//	{
+//		if (root->right == nullptr)
+//		{
+//			root->right = new Node(name, id);
+//			return true;
+//		}
+//		else if (root->right->myId == id)
+//		{
+//			cout << "ID already in system!" << endl;
+//			return false;
+//		}
+//		return inserter(root->right, name, id);
+//	}
+//}
 void Tree::search(int id)
 {
 
