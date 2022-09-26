@@ -3,7 +3,7 @@
 class Tree
 {
 public:
-	Node* root;
+	Node* myRoot;
 
 	Tree();
 
