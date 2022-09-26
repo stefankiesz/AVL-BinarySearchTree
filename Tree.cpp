@@ -115,31 +115,82 @@ Node* Tree::traversal(Node* root, int id)
 
 bool Tree::remove(int id)
 {
+	// TODO: add special case for when the node to remove is the root of tree
+	// (traversal does not work for root nodes)
+	
 	Node* parent = traversal(myRoot, id);
 	if (parent == nullptr) { return false; }
 	Node* removeNode = nullptr;
+
+	// If node to remove is to the left of the identified parent
 	if (parent->left->myId == id)
 	{
 		removeNode = parent->left;
+		// If there are not child nodes from the node to remove
 		if (removeNode->left == nullptr && removeNode->right == nullptr)
 		{
 			parent->left = nullptr;
 			delete removeNode;
 			return true;
 		}
+		// If there is only one, left child node from the node to remove
 		else if (removeNode->left != nullptr && removeNode->right == nullptr)
 		{
 			parent->left = removeNode->left;
 			delete removeNode;
 			return true;
 		}
+		// If there is only one, right child node from the node to remove
 		else if (removeNode->right != nullptr && removeNode->left == nullptr)
 		{
 			parent->left = removeNode->right;
 			delete removeNode;
 			return true;
 		}
+		// If there are two nodes from the node to remove
+		else
+		{
+			// This is the parent of the node that will replace the removed node
+			Node* bruhParent = removeNode->right;
+
+			// Case of no left node from node directly to the right of Node to be removed
+			if (bruhParent->left == nullptr)
+			{
+				bruhParent->left = removeNode->left;
+				parent->left = bruhParent;
+				delete removeNode;
+				return true;
+			}
+
+			// Case of there are node(s) to the left of the node directly right of Node to be removed
+			while (bruhParent->left->left != nullptr)
+			{
+				bruhParent = bruhParent->left;
+			}
+			bruhParent->left->left = removeNode->left;
+			if (bruhParent->left->right != nullptr)
+			{
+				Node* temp = new Node();
+				temp->myId = bruhParent->left->right->myId;
+				temp->myName = bruhParent->left->right->myId;
+				temp->left = bruhParent->left->right->left;
+				temp->right = bruhParent->left->right->right;
+				delete bruhParent->left->right;
+				bruhParent->left->right = removeNode->right;
+				bruhParent->left = temp;
+			}
+			else
+			{
+				bruhParent->left->right = removeNode->right;
+				bruhParent->left = nullptr;
+			}
+			delete removeNode;
+			return true;
+		}
+		// TODO: can prob just have one return true at the end here
+		// (the false returns should all be handled at the start)
 	}
+	// If node to remove is to the right of the identified parent
 	else
 	{
 		removeNode = parent->right;
@@ -161,6 +212,51 @@ bool Tree::remove(int id)
 			delete removeNode;
 			return true;
 		}
+
+		// If there are two nodes from the node to remove
+		else
+		{
+			// This is the parent of the node that will replace the removed node
+			Node* bruhParent = removeNode->right;
+
+			// Case of no left node from node directly to the right of Node to be removed
+			if (bruhParent->left == nullptr)
+			{
+				bruhParent->left = removeNode->left;
+				// TODO: clean this up, the only difference between the 2 child case of left/right remove node
+				// of parent is the below line - reuse all the other code
+				parent->right = bruhParent;
+				delete removeNode;
+				return true;
+			}
+
+			// Case of there are node(s) to the left of the node directly right of Node to be removed
+			while (bruhParent->left->left != nullptr)
+			{
+				bruhParent = bruhParent->left;
+			}
+			bruhParent->left->left = removeNode->left;
+			if (bruhParent->left->right != nullptr)
+			{
+				Node* temp = new Node();
+				temp->myId = bruhParent->left->right->myId;
+				temp->myName = bruhParent->left->right->myId;
+				temp->left = bruhParent->left->right->left;
+				temp->right = bruhParent->left->right->right;
+				delete bruhParent->left->right;
+				bruhParent->left->right = removeNode->right;
+				bruhParent->left = temp;
+			}
+			else
+			{
+				bruhParent->left->right = removeNode->right;
+				bruhParent->left = nullptr;
+			}
+			delete removeNode;
+			return true;
+		}
+		// TODO: can prob just have one return true at the end here
+		// (the false returns should all be handled at the start)
 	}
 
 }
