@@ -10,15 +10,21 @@ int main()
 	cout << myTree.insert("BOB", 11112222) << endl;
 	cout << myTree.insert("JOE", 22223333) << endl;
 	cout << myTree.insert("HOE", 77778888) << endl;
+	cout << myTree.insert("hell0", 11112223) << endl;
+	cout << myTree.insert("hello", 11112223) << endl;
+	cout << myTree.insert("hello", 0) << endl;
+	cout << myTree.insert("hello", 111122223) << endl;
 
 
-	cout << myTree.root->left->myName << endl;
-	cout << myTree.root->left->myId << endl;
 
-	cout << myTree.root->left->right->myName << endl;
-	cout << myTree.root->left->right->myId << endl;
 
-	cout << myTree.root->right->myName << endl;
-	cout << myTree.root->right->myId << endl;
+	//cout << mytree.root->left->myname << endl;
+	//cout << mytree.root->left->myid << endl;
+
+	//cout << mytree.root->left->right->myname << endl;
+	//cout << mytree.root->left->right->myid << endl;
+
+	//cout << mytree.root->right->myname << endl;
+	//cout << mytree.root->right->myid << endl;
 	return 0;
 }
