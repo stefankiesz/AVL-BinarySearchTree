@@ -112,12 +112,86 @@ Node* Tree::traversal(Node* root, int id)
 	}
 }
 
-
 bool Tree::remove(int id)
 {
-	// TODO: add special case for when the node to remove is the root of tree
-	// (traversal does not work for root nodes)
-	
+	// Case for when the node to remove is the root of tree
+	// (traversal() does not work for root nodes)
+	if (myRoot->myId == id)
+	{
+		if (myRoot->left == nullptr && myRoot->right == nullptr)
+		{
+			delete myRoot;
+			myRoot = nullptr;
+			cout << "successful" << endl;
+			return true;
+		}
+		else if (myRoot->left != nullptr && myRoot->right == nullptr)
+		{
+			Node* temp = myRoot;
+			myRoot = myRoot->left;
+			delete temp;
+			cout << "successful" << endl;
+			return true;
+		}
+		// If there is only one, right child node from the node to remove
+		else if (myRoot->right != nullptr && myRoot->left == nullptr)
+		{
+			Node* temp = myRoot;
+			myRoot = myRoot->right;
+			delete temp;
+			cout << "successful" << endl;
+			return true;
+		}
+		// If there are two nodes from the node to remove
+		else
+		{
+			// This is the parent of the node that will replace the removed node
+			Node* bruhParent = myRoot->right;
+
+			// Case of no left node from node directly to the right of Node to be removed
+			if (bruhParent->left == nullptr)
+			{
+				bruhParent->left = myRoot->left;
+				delete myRoot;
+				myRoot = bruhParent;
+				cout << "successful" << endl;
+				return true;
+			}
+
+			// Case of there are node(s) to the left of the node directly right of Node to be removed
+			// TODO: Note: the below line is also different between two large-scope cases (remove node being to the left/right of parent)
+			while (bruhParent->left->left != nullptr)
+			{
+				bruhParent = bruhParent->left;
+			}
+			bruhParent->left->left = myRoot->left;
+			if (bruhParent->left->right != nullptr)
+			{
+				Node* temp = new Node();
+				temp->myId = bruhParent->left->right->myId;
+				temp->myName = bruhParent->left->right->myId;
+				temp->left = bruhParent->left->right->left;
+				temp->right = bruhParent->left->right->right;
+				delete bruhParent->left->right;
+				bruhParent->left->right = myRoot->right;
+				delete myRoot;
+				myRoot = bruhParent->left;
+				bruhParent->left = temp;
+			}
+			else
+			{
+				bruhParent->left->right = myRoot->right;
+				delete myRoot;
+				myRoot = bruhParent->left;
+				bruhParent->left = nullptr;
+
+			}
+			cout << "successful" << endl;
+			return true;
+		}
+
+	}
+
 	Node* parent = traversal(myRoot, id);
 	if (parent == nullptr)
 	{
@@ -278,9 +352,19 @@ bool Tree::remove(int id)
 
 }
 
-void Tree::search(int id)
+bool Tree::search(int id)
 {
-
+	if (myRoot->myId == id)
+	{
+		return true;
+	}
+	Node* parent = traversal(myRoot, id);
+	if(parent == nullptr)
+	if (parent->left != nullptr && parent->left->myId == id)
+	{
+		cout << parent->left->myName << endl;
+		return true;
+	}
 }
 
 void Tree::printInorder()

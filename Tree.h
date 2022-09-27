@@ -13,7 +13,7 @@ public:
 	Node* traversal(Node* root, int id);
 
 	bool remove(int id);
-	void search(int id);
+	bool search(int id);
 	void printInorder();
 	void printPreorder();
 	void printPostorder();

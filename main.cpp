@@ -31,7 +31,7 @@ int main()
 
 
 	cout << "now to delete" << endl;
-	myTree.remove(22223333);
+	myTree.remove(69569915);
 
 	cout << myTree.myRoot->myId << endl;
 	cout << myTree.myRoot->left->myId << endl;
