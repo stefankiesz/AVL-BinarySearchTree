@@ -356,13 +356,23 @@ bool Tree::search(int id)
 {
 	if (myRoot->myId == id)
 	{
+		cout << myRoot->myName << endl;
 		return true;
 	}
 	Node* parent = traversal(myRoot, id);
-	if(parent == nullptr)
+	if (parent == nullptr)
+	{
+		cout << "unsuccessful" << endl;
+		return false;
+	}
 	if (parent->left != nullptr && parent->left->myId == id)
 	{
 		cout << parent->left->myName << endl;
+		return true;
+	}
+	else
+	{
+		cout << parent->right->myName << endl;
 		return true;
 	}
 }

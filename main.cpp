@@ -35,7 +35,7 @@ int main()
 
 	cout << myTree.myRoot->myId << endl;
 	cout << myTree.myRoot->left->myId << endl;
-	cout << myTree.myRoot->right->myId << endl;
+	// cout << myTree.myRoot->right->myId << endl;
 	cout << myTree.myRoot->left->left->myId << endl;
 	cout << myTree.myRoot->left->right->myId << endl;
 	if (myTree.myRoot->left->right->right != nullptr)
@@ -48,8 +48,6 @@ int main()
 		cout << myTree.myRoot->left->right->left->myId << endl;
 
 	}
-
-
 
 
 	//cout << mytree.root->left->myname << endl;
