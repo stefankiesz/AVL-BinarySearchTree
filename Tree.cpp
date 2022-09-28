@@ -14,7 +14,6 @@ bool Tree::inserter(Node* root, string name, int id)
 	}
 	if (root->myId == id)
 	{
-		cout << "ID already in system!" << endl;
 		return false;
 	}
 	if (root->myId > id)
@@ -52,12 +51,13 @@ bool Tree::insert(string name, int id)
 	for (int i = 0; i < name.length(); i++)
 	{
 		int ascii = int(name[i]);
-		if (ascii < 65 || (ascii > 90 && ascii < 97) || ascii > 122)
+		if ((ascii < 65 || (ascii > 90 && ascii < 97) || ascii > 122) && ascii != 32)
 		{
 			cout << "unsuccessful" << endl;
 			return false;
 		}
 	}
+	// TODO: allow for values smaller than 10000000, parse the zeros away, add them back when printing
 	if (id < 10000000 || id > 99999999)
 	{
 		cout << "unsuccessful" << endl;
