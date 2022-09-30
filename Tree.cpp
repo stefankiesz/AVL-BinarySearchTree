@@ -71,7 +71,7 @@ bool Tree::insert(string name, int id)
 	cout << "unsuccessful" << endl;
 	return false;
 }
-
+// change
 // This is more of a search method
 // it searches for the id's parent node;
 // root should be the search tree's root
@@ -377,11 +377,23 @@ bool Tree::search(int id)
 	}
 }
 
+
+void Tree::inorderHelper(Node* root)
+{
+	if (root != nullptr)
+	{
+		inorderHelper(root->left);
+		cout << root->myName << ", ";
+		inorderHelper(root->right);
+	}
+}
+
 void Tree::printInorder()
 {
-
+	inorderHelper(myRoot);
+	cout << endl;
 }
-void Tree::printPreorder()
+ void Tree::printPreorder()
 {
 
 }
