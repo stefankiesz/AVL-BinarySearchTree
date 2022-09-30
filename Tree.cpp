@@ -451,10 +451,19 @@ void Tree::printPostorder()
 	cout << endl;
 }
 
+int Tree::levelHelper(Node* root, int level)
+{
+	if (root != nullptr)
+	{
+		level++;
+		level = max(levelHelper(root->left, level), levelHelper(root->right, level));
+	}
+	return level;
+}
 
 void Tree::printLevelCount()
 {
-
+	cout << levelHelper(myRoot, 0) << endl;
 }
 
 void Tree::removeInorder(int n)

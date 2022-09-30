@@ -22,6 +22,7 @@ public:
 	void printInorder();
 	void printPreorder();
 	void printPostorder();
+	int levelHelper(Node* root, int level);
 	void printLevelCount();
 	void removeInorder(int n);
 

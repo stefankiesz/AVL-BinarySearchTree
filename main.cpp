@@ -13,15 +13,18 @@ int main()
 	myTree.insert("bye", 33334444);
 
 	myTree.printPostorder();
-
-	myTree.search("Stefan");
+	myTree.printLevelCount();
 
 	cout << "now to delete" << endl;
-	myTree.remove(69569915);
+	myTree.remove(22223333);
 
 	myTree.printPostorder();
+	myTree.printLevelCount();
 
-
+	Tree treeTwo;
+	treeTwo.printLevelCount();
+	treeTwo.insert("bruh", 11112222);
+	treeTwo.printLevelCount();
 
 
 	return 0;
