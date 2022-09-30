@@ -377,6 +377,31 @@ bool Tree::search(int id)
 	}
 }
 
+bool Tree::searchHelper(Node* root, string name, bool found)
+{
+	if (root != nullptr)
+	{
+		if (root->myName.compare(name) == 0)
+		{
+			found = true;
+			cout << root->myId << endl;
+		}
+		found = searchHelper(root->left, name, found);
+		found = searchHelper(root->right, name, found);
+	}
+	return found;
+}
+
+// TODO: might have to parse out the name from quotes from name parameter
+bool Tree::search(string name)
+{
+	if (!searchHelper(myRoot, name, false))
+	{
+		cout << "unsuccessful" << endl;
+		return false;
+	}
+	return true;
+}
 
 void Tree::inorderHelper(Node* root)
 {
@@ -419,19 +444,24 @@ void Tree::printInorder()
 	 preorderHelper(myRoot);
 	 cout << endl;
 }
+
 void Tree::printPostorder()
 {
 	postorderHelper(myRoot);
 	cout << endl;
 }
+
+
 void Tree::printLevelCount()
 {
 
 }
+
 void Tree::removeInorder(int n)
 {
 
 }
+
 
 void balanceTree()
 {
