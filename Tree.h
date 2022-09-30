@@ -15,6 +15,7 @@ public:
 	bool remove(int id);
 	bool search(int id);
 	void inorderHelper(Node* root);
+	void preorderHelper(Node* root);
 	void printInorder();
 	void printPreorder();
 	void printPostorder();

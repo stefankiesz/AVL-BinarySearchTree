@@ -388,14 +388,26 @@ void Tree::inorderHelper(Node* root)
 	}
 }
 
+void Tree::preorderHelper(Node* root)
+{
+	if (root != nullptr)
+	{
+		cout << root->myName << ", ";
+		preorderHelper(root->left);
+		preorderHelper(root->right);
+	}
+}
+
 void Tree::printInorder()
 {
 	inorderHelper(myRoot);
 	cout << endl;
 }
+
  void Tree::printPreorder()
 {
-
+	 preorderHelper(myRoot);
+	 cout << endl;
 }
 void Tree::printPostorder()
 {

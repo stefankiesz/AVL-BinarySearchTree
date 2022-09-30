@@ -12,13 +12,13 @@ int main()
 	myTree.insert("hello", 44445555);
 	myTree.insert("bye", 33334444);
 
-	myTree.printInorder();
+	myTree.printPreorder();
 
 
 	cout << "now to delete" << endl;
 	myTree.remove(69569915);
 
-	myTree.printInorder();
+	myTree.printPreorder();
 
 
 
