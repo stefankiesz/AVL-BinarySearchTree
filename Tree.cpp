@@ -398,6 +398,16 @@ void Tree::preorderHelper(Node* root)
 	}
 }
 
+void Tree::postorderHelper(Node* root)
+{
+	if (root != nullptr)
+	{
+		postorderHelper(root->left);
+		postorderHelper(root->right);
+		cout << root->myName << ", ";
+	}
+}
+
 void Tree::printInorder()
 {
 	inorderHelper(myRoot);
@@ -411,7 +421,8 @@ void Tree::printInorder()
 }
 void Tree::printPostorder()
 {
-
+	postorderHelper(myRoot);
+	cout << endl;
 }
 void Tree::printLevelCount()
 {
