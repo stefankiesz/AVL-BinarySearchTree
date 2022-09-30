@@ -1,5 +1,7 @@
 #include"Tree.h"
 
+// TODO: make proper things private, bruh
+
 Tree::Tree()
 {
 	myRoot = nullptr;
