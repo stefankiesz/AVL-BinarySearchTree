@@ -24,6 +24,7 @@ public:
 	void printPostorder();
 	int levelHelper(Node* root, int level);
 	void printLevelCount();
+	int removeInorderHelper(Node* root, int n);
 	void removeInorder(int n);
 
 	void balanceTree();

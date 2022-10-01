@@ -441,7 +441,7 @@ void Tree::printInorder()
 	cout << endl;
 }
 
- void Tree::printPreorder()
+void Tree::printPreorder()
 {
 	 preorderHelper(myRoot);
 	 cout << endl;
@@ -468,9 +468,27 @@ void Tree::printLevelCount()
 	cout << levelHelper(myRoot, 0) << endl;
 }
 
+int Tree::removeInorderHelper(Node* root, int n)
+{
+	if (root != nullptr)
+	{
+		n = removeInorderHelper(root->left, n);
+		if (n == 0)
+		{
+			remove(root->myId);
+			return -1;
+		}
+		if (n < 0) { return n; }
+		n--;
+		n = removeInorderHelper(root->right, n);
+	}
+	return n;
+}
+
 void Tree::removeInorder(int n)
 {
-
+	if (removeInorderHelper(myRoot, n) < 0){ cout << "successful" << endl; }
+	else { cout << "unsuccessful" << endl; }
 }
 
 

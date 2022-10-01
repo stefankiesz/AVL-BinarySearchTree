@@ -5,27 +5,20 @@ using namespace std;
 int main()
 {
 	Tree myTree;
-	myTree.insert("Stefan", 69569915);
-	myTree.insert("Stefan", 22223333);
-	myTree.insert("JOE", 11112222);
-	myTree.insert("HOE", 77778888);
-	myTree.insert("hello", 44445555);
-	myTree.insert("bye", 33334444);
+	myTree.insert("six", 69569915);
+	myTree.insert("two", 22223333);
+	myTree.insert("one", 11112222);
+	myTree.insert("seven", 77778888);
+	myTree.insert("four", 44445555);
+	myTree.insert("three", 33334444);
 
-	myTree.printPostorder();
+	myTree.printInorder();
 	myTree.printLevelCount();
 
-	cout << "now to delete" << endl;
-	myTree.remove(22223333);
+	myTree.removeInorder(2);
 
-	myTree.printPostorder();
+	myTree.printInorder();
 	myTree.printLevelCount();
-
-	Tree treeTwo;
-	treeTwo.printLevelCount();
-	treeTwo.insert("bruh", 11112222);
-	treeTwo.printLevelCount();
-
 
 	return 0;
 }
