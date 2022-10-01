@@ -15,7 +15,7 @@ int main()
 	myTree.printInorder();
 	myTree.printLevelCount();
 
-	myTree.removeInorder(2);
+	myTree.removeInorder(6);
 
 	myTree.printInorder();
 	myTree.printLevelCount();

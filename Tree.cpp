@@ -487,8 +487,7 @@ int Tree::removeInorderHelper(Node* root, int n)
 
 void Tree::removeInorder(int n)
 {
-	if (removeInorderHelper(myRoot, n) < 0){ cout << "successful" << endl; }
-	else { cout << "unsuccessful" << endl; }
+	if (removeInorderHelper(myRoot, n) >= 0){ cout << "unsuccessful" << endl; }
 }
 
 
