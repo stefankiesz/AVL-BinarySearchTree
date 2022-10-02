@@ -1,6 +1,6 @@
 #include"Tree.h"
 
-// TODO: make proper things private, bruh
+// TODO: make the proper things private, bruh
 
 Tree::Tree()
 {
@@ -60,7 +60,7 @@ bool Tree::insert(string name, int id)
 		}
 	}
 	// TODO: allow for values smaller than 10000000, parse the zeros away, add them back when printing
-	if (id < 10000000 || id > 99999999)
+	if (id < 0 || id > 99999999)
 	{
 		cout << "unsuccessful" << endl;
 		return false;
@@ -73,7 +73,7 @@ bool Tree::insert(string name, int id)
 	cout << "unsuccessful" << endl;
 	return false;
 }
-// change
+
 // This is more of a search method
 // it searches for the id's parent node;
 // root should be the search tree's root
