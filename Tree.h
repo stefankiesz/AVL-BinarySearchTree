@@ -7,7 +7,7 @@ public:
 
 	Tree();
 
-	bool inserter(Node* root, string name, int id);
+	bool inserter(Node* root, string name, int id, bool& newLevel);
 	bool insert(string name, int id);
 
 	Node* traversal(Node* root, int id);

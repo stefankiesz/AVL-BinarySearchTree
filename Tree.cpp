@@ -1,13 +1,14 @@
 #include"Tree.h"
 
-// TODO: make the proper things private, bruh
+// TODO: make the proper things private, bruhhh
 
 Tree::Tree()
 {
 	myRoot = nullptr;
 }
 
-bool Tree::inserter(Node* root, string name, int id)
+// TODO: store the height of each node in the Node object
+bool Tree::inserter(Node* root, string name, int id, bool& newLevel)
 {
 	if (root == nullptr)
 	{
@@ -23,30 +24,60 @@ bool Tree::inserter(Node* root, string name, int id)
 		if (root->left == nullptr)
 		{
 			root->left = new Node(name, id);
+			if (root->right == nullptr)
+			{
+				newLevel = true;
+			}
+			if (newLevel && ((root->left != nullptr && root->left->myHeight == root->myHeight) ||
+				(root->right != nullptr && root->right->myHeight == root->myHeight)))
+			{
+				root->myHeight++;
+			}
 			return true;
 		}
 		else if (root->left->myId == id)
 		{
-			cout << "ID already in system!" << endl;
 			return false;
 		}
-		return inserter(root->left, name, id);
+		bool output = inserter(root->left, name, id, newLevel);
+		if (newLevel && ((root->left != nullptr && root->left->myHeight == root->myHeight) ||
+			(root->right != nullptr && root->right->myHeight == root->myHeight)))
+		{
+			root->myHeight++;
+		}
+		return output;
 	}
 	else
 	{
 		if (root->right == nullptr)
 		{
 			root->right = new Node(name, id);
+			if (root->left == nullptr)
+			{
+				newLevel = true;
+			}
+			if (newLevel && ((root->left != nullptr && root->left->myHeight == root->myHeight) ||
+				(root->right != nullptr && root->right->myHeight == root->myHeight)))
+			{
+				root->myHeight++;
+			}
 			return true;
 		}
 		else if (root->right->myId == id)
 		{
-			cout << "ID already in system!" << endl;
 			return false;
 		}
-		return inserter(root->right, name, id);
+		bool output = inserter(root->right, name, id, newLevel);
+		if (newLevel && ((root->left != nullptr && root->left->myHeight == root->myHeight) ||
+			(root->right != nullptr && root->right->myHeight == root->myHeight)))
+		{
+			root->myHeight++;
+		}
+		return output;
 	}
 }
+
+
 
 bool Tree::insert(string name, int id)
 {
@@ -65,7 +96,8 @@ bool Tree::insert(string name, int id)
 		cout << "unsuccessful" << endl;
 		return false;
 	}
-	if (inserter(myRoot, name, id))
+	bool newLevel = false;
+	if (inserter(myRoot, name, id, newLevel))
 	{
 		cout << "successful" << endl;
 		return true;
@@ -497,7 +529,10 @@ void Tree::removeInorder(int n)
 }
 
 
-void balanceTree()
+void balanceTree(Node* root)
 {
-
+	if (root != nullptr)
+	{
+		balanceTree(root->left);
+	}
 }

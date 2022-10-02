@@ -13,12 +13,28 @@ int main()
 	myTree.insert("three", 33334444);
 
 	myTree.printInorder();
-	myTree.printLevelCount();
+	// myTree.printPostorder();
+	// myTree.printPreorder();
+	// myTree.printLevelCount();
 
-	myTree.removeInorder(6);
+	cout << myTree.myRoot->myHeight << endl;
+	cout << myTree.myRoot->myId << endl;
 
-	myTree.printInorder();
-	myTree.printLevelCount();
+	cout << myTree.myRoot->left->myHeight << endl;
+	cout << myTree.myRoot->left->myId << endl;
+
+	cout << myTree.myRoot->right->myHeight << endl;
+	cout << myTree.myRoot->right->myId << endl;
+
+	cout << myTree.myRoot->left->left->myHeight << endl;
+	cout << myTree.myRoot->left->left->myId << endl;
+
+	cout << myTree.myRoot->left->right->myHeight << endl;
+	cout << myTree.myRoot->left->right->myId << endl;
+
+	cout << myTree.myRoot->left->right->left->myHeight << endl;
+	cout << myTree.myRoot->left->right->left->myId << endl;
+
 
 	return 0;
 }
