@@ -405,51 +405,57 @@ bool Tree::search(string name)
 	return true;
 }
 
-void Tree::inorderHelper(Node* root)
+void Tree::inorderHelper(Node* root, string& output)
 {
 	if (root != nullptr)
 	{
-		inorderHelper(root->left);
-		cout << root->myName << ", ";
-		inorderHelper(root->right);
+		inorderHelper(root->left, output);
+		output += root->myName + ", ";
+		inorderHelper(root->right, output);
 	}
 }
 
-void Tree::preorderHelper(Node* root)
+void Tree::preorderHelper(Node* root, string& output)
 {
 	if (root != nullptr)
 	{
-		cout << root->myName << ", ";
-		preorderHelper(root->left);
-		preorderHelper(root->right);
+		output += root->myName + ", ";
+		preorderHelper(root->left, output);
+		preorderHelper(root->right, output);
 	}
 }
 
-void Tree::postorderHelper(Node* root)
+void Tree::postorderHelper(Node* root, string& output)
 {
 	if (root != nullptr)
 	{
-		postorderHelper(root->left);
-		postorderHelper(root->right);
-		cout << root->myName << ", ";
+		postorderHelper(root->left, output);
+		postorderHelper(root->right, output);
+		output += root->myName + ", ";
 	}
 }
 
 void Tree::printInorder()
 {
-	inorderHelper(myRoot);
+	string output;
+	inorderHelper(myRoot, output);
+	cout << output.substr(0, output.length() - 2 ) << endl;
 	cout << endl;
 }
 
 void Tree::printPreorder()
 {
-	 preorderHelper(myRoot);
-	 cout << endl;
+	string output;
+	preorderHelper(myRoot, output);
+	cout << output.substr(0, output.length() - 2) << endl;
+	cout << endl;
 }
 
 void Tree::printPostorder()
 {
-	postorderHelper(myRoot);
+	string output;
+	postorderHelper(myRoot, output);
+	cout << output.substr(0, output.length() - 2) << endl;
 	cout << endl;
 }
 

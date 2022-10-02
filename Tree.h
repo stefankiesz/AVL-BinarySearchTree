@@ -16,9 +16,9 @@ public:
 	bool search(int id);
 	bool searchHelper(Node* root, string name, bool found);
 	bool search(string name);
-	void inorderHelper(Node* root);
-	void preorderHelper(Node* root);
-	void postorderHelper(Node* root);
+	void inorderHelper(Node* root, string& output);
+	void preorderHelper(Node* root, string& output);
+	void postorderHelper(Node* root, string& output);
 	void printInorder();
 	void printPreorder();
 	void printPostorder();
