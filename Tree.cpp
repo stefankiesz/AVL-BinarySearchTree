@@ -77,8 +77,6 @@ bool Tree::inserter(Node* root, string name, int id, bool& newLevel)
 	}
 }
 
-
-
 bool Tree::insert(string name, int id)
 {
 	for (int i = 0; i < name.length(); i++)
@@ -146,12 +144,14 @@ Node* Tree::traversal(Node* root, int id)
 	}
 }
 
+// TODO: update node height upon node removal
 bool Tree::remove(int id)
 {
 	// Case for when the node to remove is the root of tree
 	// (traversal() does not work for root nodes)
 	if (myRoot->myId == id)
 	{
+		// If there are no child nodes from the node to remove
 		if (myRoot->left == nullptr && myRoot->right == nullptr)
 		{
 			delete myRoot;
@@ -159,12 +159,14 @@ bool Tree::remove(int id)
 			cout << "successful" << endl;
 			return true;
 		}
+		// If there is only one, left child node from the node to remove
 		else if (myRoot->left != nullptr && myRoot->right == nullptr)
 		{
 			Node* temp = myRoot;
 			myRoot = myRoot->left;
 			delete temp;
 			cout << "successful" << endl;
+			myRoot->myHeight--;
 			return true;
 		}
 		// If there is only one, right child node from the node to remove
@@ -174,6 +176,7 @@ bool Tree::remove(int id)
 			myRoot = myRoot->right;
 			delete temp;
 			cout << "successful" << endl;
+			myRoot->myHeight--;
 			return true;
 		}
 		// If there are two nodes from the node to remove
@@ -189,6 +192,7 @@ bool Tree::remove(int id)
 				delete myRoot;
 				myRoot = bruhParent;
 				cout << "successful" << endl;
+				bruhParent->myHeight--;
 				return true;
 			}
 
