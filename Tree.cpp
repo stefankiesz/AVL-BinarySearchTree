@@ -7,7 +7,6 @@ Tree::Tree()
 	myRoot = nullptr;
 }
 
-// TODO: store the height of each node in the Node object
 bool Tree::inserter(Node* root, string name, int id, bool& newLevel)
 {
 	if (root == nullptr)
@@ -108,6 +107,7 @@ bool Tree::insert(string name, int id)
 // it searches for the id's parent node;
 // root should be the search tree's root
 // returns nullptr if not found or if the node is the tree's root
+// TODO: will make it also update the Nodes' height members
 Node* Tree::traversal(Node* root, int id)
 {
 	if (root == nullptr)
@@ -141,6 +141,64 @@ Node* Tree::traversal(Node* root, int id)
 			return root;
 		}
 		return traversal(root->right, id);
+	}
+}
+
+Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
+{
+	if (root == nullptr)
+	{
+		return nullptr;
+	}
+	if (root->myId == id)
+	{
+		return nullptr;
+	}
+	if (root->myId > id)
+	{
+		if (root->left == nullptr)
+		{
+			return nullptr;
+		}
+		if (root->left->myId == id)
+		{
+			if (root->right == nullptr)
+			{
+				decrementHeight = true;
+				root->myHeight--;
+			}
+			return root;
+		}
+		Node* returnNode = traversal(root->left, id, decrementHeight);
+		if (decrementHeight && (root->right == nullptr || root->myHeight > root->right->myHeight + 1) &&
+			(root->left == nullptr || root->myHeight > root->left->myHeight + 1))
+		{
+			root->myHeight--;
+		}
+		return returnNode;
+	}
+	else
+	{
+		if (root->right == nullptr)
+		{
+			return nullptr;
+		}
+		if (root->right->myId == id)
+		{
+			if (root->left == nullptr)
+			{
+				decrementHeight = true;
+				root->myHeight--;
+			}
+			return root;
+		}
+		Node* returnNode = traversal(root->right, id, decrementHeight);
+		if (decrementHeight && (root->right == nullptr || root->myHeight > root->right->myHeight + 1) &&
+			(root->left == nullptr || root->myHeight > root->left->myHeight + 1))
+		{
+			root->myHeight--;
+		}
+		return returnNode;
 	}
 }
 
@@ -230,7 +288,8 @@ bool Tree::remove(int id)
 
 	}
 
-	Node* parent = traversal(myRoot, id);
+	bool decrementHeights = false;
+	Node* parent = traversal(myRoot, id, decrementHeights);
 	if (parent == nullptr)
 	{
 		cout << "unsuccessful" << endl;
@@ -505,6 +564,7 @@ int Tree::levelHelper(Node* root, int level)
 	return level;
 }
 
+// TODO: make sure this uses correct starting point: 0 or 1?
 void Tree::printLevelCount()
 {
 	cout << levelHelper(myRoot, 0) << endl;

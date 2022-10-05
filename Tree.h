@@ -11,6 +11,7 @@ public:
 	bool insert(string name, int id);
 
 	Node* traversal(Node* root, int id);
+	Node* traversal(Node* root, int id, bool& decrementHeight);
 
 	bool remove(int id);
 	bool search(int id);
