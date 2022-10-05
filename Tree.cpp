@@ -274,7 +274,7 @@ bool Tree::remove(int id)
 			{
 				Node* temp = new Node();
 				temp->myId = bruhParent->left->right->myId;
-				temp->myName = bruhParent->left->right->myId;
+				temp->myName = bruhParent->left->right->myName;
 				temp->left = bruhParent->left->right->left;
 				temp->right = bruhParent->left->right->right;
 				delete bruhParent->left->right;
@@ -362,7 +362,7 @@ bool Tree::remove(int id)
 			{
 				Node* temp = new Node();
 				temp->myId = bruhParent->left->right->myId;
-				temp->myName = bruhParent->left->right->myId;
+				temp->myName = bruhParent->left->right->myName;
 				temp->left = bruhParent->left->right->left;
 				temp->right = bruhParent->left->right->right;
 				delete bruhParent->left->right;
@@ -436,7 +436,7 @@ bool Tree::remove(int id)
 			{
 				Node* temp = new Node();
 				temp->myId = bruhParent->left->right->myId;
-				temp->myName = bruhParent->left->right->myId;
+				temp->myName = bruhParent->left->right->myName;
 				temp->left = bruhParent->left->right->left;
 				temp->right = bruhParent->left->right->right;
 				delete bruhParent->left->right;
