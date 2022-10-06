@@ -30,5 +30,10 @@ public:
 
 	void balanceTree();
 
+	void printHeightsInorder();
+	void heightsInorderHelper(Node* root, string& output);
+
+
+
 };
 

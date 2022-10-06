@@ -162,7 +162,7 @@ Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
 		}
 		if (root->left->myId == id)
 		{
-			if (root->right == nullptr)
+			if (root->right == nullptr || root->right->myHeight + 1 < root->myHeight)
 			{
 				decrementHeight = true;
 				root->myHeight--;
@@ -185,7 +185,7 @@ Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
 		}
 		if (root->right->myId == id)
 		{
-			if (root->left == nullptr)
+			if (root->left == nullptr || root->left->myHeight + 1 < root->myHeight)
 			{
 				decrementHeight = true;
 				root->myHeight--;
@@ -193,8 +193,8 @@ Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
 			return root;
 		}
 		Node* returnNode = traversal(root->right, id, decrementHeight);
-		if (decrementHeight && (root->right == nullptr || root->myHeight > root->right->myHeight + 1) &&
-			(root->left == nullptr || root->myHeight > root->left->myHeight + 1))
+		if (decrementHeight && (root->left == nullptr || root->myHeight > root->left->myHeight + 1) &&
+			(root->right == nullptr || root->myHeight > root->right->myHeight + 1))
 		{
 			root->myHeight--;
 		}
@@ -205,6 +205,7 @@ Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
 // TODO: update node height upon node removal
 bool Tree::remove(int id)
 {
+
 	// Case for when the node to remove is the root of tree
 	// (traversal() does not work for root nodes)
 	if (myRoot->myId == id)
@@ -302,8 +303,10 @@ bool Tree::remove(int id)
 
 	}
 
+
 	bool decrementHeights = false;
 	Node* parent = traversal(myRoot, id, decrementHeights);
+	cout << decrementHeights << endl;
 
 	if (parent == nullptr)
 	{
@@ -642,4 +645,26 @@ void balanceTree(Node* root)
 	{
 		balanceTree(root->left);
 	}
+}
+
+
+
+
+void Tree::heightsInorderHelper(Node* root, string& output)
+{
+	if (root != nullptr)
+	{
+		heightsInorderHelper(root->left, output);
+		output += to_string(root->myHeight) + ", ";
+		heightsInorderHelper(root->right, output);
+	}
+}
+
+
+void Tree::printHeightsInorder()
+{
+	string output;
+	heightsInorderHelper(myRoot, output);
+	cout << output.substr(0, output.length() - 2) << endl;
+	cout << endl;
 }
