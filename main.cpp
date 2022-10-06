@@ -5,14 +5,10 @@ using namespace std;
 int main()
 {
 	Tree myTree;
-	myTree.insert("three", 3);
-	myTree.insert("two", 2);
-	myTree.insert("nine", 9);
-	myTree.insert("six", 6);
-	myTree.insert("four", 4);
 	myTree.insert("five", 5);
-	myTree.insert("seven", 7);
+	myTree.insert("three", 3);
 	myTree.insert("eight", 8);
+	myTree.insert("ten", 10);
 
 
 	// myTree.printInorder();

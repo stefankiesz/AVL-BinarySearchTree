@@ -263,13 +263,18 @@ bool Tree::remove(int id)
 				bruhParent = bruhParent->left;
 			}
 
-			// Here we call traversal on node to replace the removed node
-			// to decrement the Heights if necessary
+			// Here we call traversal on the node to replace the removed node,
+			// this is to decrement the Heights if necessary
 			bool decrementHeights = false;
 			traversal(myRoot, bruhParent->left->myId, decrementHeights);
 
 			bruhParent->left->left = myRoot->left;
+
+			// Here, the height of replacing node is set to equal the removed root's height
+			// the traversal() call above already accounts for whether or not the movement of the 
+			// node will influence the height
 			bruhParent->left->myHeight = myRoot->myHeight;
+
 			if (bruhParent->left->right != nullptr)
 			{
 				Node* temp = new Node();
@@ -299,11 +304,13 @@ bool Tree::remove(int id)
 
 	bool decrementHeights = false;
 	Node* parent = traversal(myRoot, id, decrementHeights);
+
 	if (parent == nullptr)
 	{
 		cout << "unsuccessful" << endl;
 		return false;
 	}
+
 	Node* removeNode = nullptr;
 
 	// If node to remove is to the left of the identified parent
@@ -343,6 +350,10 @@ bool Tree::remove(int id)
 			// Case of no left node from node directly to the right of Node to be removed
 			if (bruhParent->left == nullptr)
 			{
+				if (removeNode->left->myHeight >= removeNode->right->myHeight)
+				{
+					bruhParent->myHeight = removeNode->myHeight;
+				}
 				bruhParent->left = removeNode->left;
 				parent->left = bruhParent;
 				delete removeNode;
@@ -352,11 +363,21 @@ bool Tree::remove(int id)
 
 			// Case of there are node(s) to the left of the node directly right of Node to be removed
 			// TODO: the below line is also different between two large-scope cases (remove node being to the left/right of parent)
+			
 			parent->left = bruhParent->left;
 			while (bruhParent->left->left != nullptr)
 			{
 				bruhParent = bruhParent->left;
 			}
+
+			// Here accounting for any height decrementing that may come from moving the node
+			// Note: the traversal starts at removeNode, we don't need to influence the above nodes'
+			// heights for this
+			bool decrementHeights = false;
+			traversal(removeNode, bruhParent->left->myId, decrementHeights);
+
+			bruhParent->left->myHeight = removeNode->myHeight;
+
 			bruhParent->left->left = removeNode->left;
 			if (bruhParent->left->right != nullptr)
 			{
@@ -416,6 +437,10 @@ bool Tree::remove(int id)
 			// Case of no left node from node directly to the right of Node to be removed
 			if (bruhParent->left == nullptr)
 			{
+				if (removeNode->left->myHeight >= removeNode->right->myHeight)
+				{
+					bruhParent->myHeight = removeNode->myHeight;
+				}
 				bruhParent->left = removeNode->left;
 				// TODO: clean this up, the only difference between the 2 child case of left/right remove node
 				// of parent is the below line - reuse all the other code
@@ -431,6 +456,15 @@ bool Tree::remove(int id)
 			{
 				bruhParent = bruhParent->left;
 			}
+
+			// Here accounting for any height decrementing that may come from moving the node
+			// Note: the traversal starts at removeNode, we don't need to influence the above nodes'
+			// heights for this
+			bool decrementHeights = false;
+			traversal(removeNode, bruhParent->left->myId, decrementHeights);
+
+			bruhParent->left->myHeight = removeNode->myHeight;
+
 			bruhParent->left->left = removeNode->left;
 			if (bruhParent->left->right != nullptr)
 			{
