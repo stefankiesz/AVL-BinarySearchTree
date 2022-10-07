@@ -559,18 +559,17 @@ bool Tree::searchHelper(Node* root, string name, bool found)
 {
 	if (root != nullptr)
 	{
+		found = searchHelper(root->left, name, found);
 		if (root->myName.compare(name) == 0)
 		{
 			found = true;
 			cout << root->myId << endl;
 		}
-		found = searchHelper(root->left, name, found);
 		found = searchHelper(root->right, name, found);
 	}
 	return found;
 }
 
-// TODO: might have to parse out the name from quotes from name parameter
 bool Tree::search(string name)
 {
 	if (!searchHelper(myRoot, name, false))
