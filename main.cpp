@@ -92,7 +92,7 @@ int main()
 					cout << "unsuccessful" << endl;
 					continue;
 				}
-				string nodeName = inputString.substr(8, inputString.length() - 7);
+				string nodeName = inputString.substr(8, inputString.length() - 9);
 				treeInstance.search(nodeName);
 				continue;
 			}
@@ -122,9 +122,6 @@ int main()
 		// INVALID
 		cout << "unsuccessful" << endl;
 	 }
-
-	cout << treeInstance.myRoot->myName << endl;
-	cout << treeInstance.myRoot->myId << endl;
 
 
 	/*
