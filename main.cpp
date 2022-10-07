@@ -42,18 +42,38 @@ int main()
 			continue;
 		}
 
-		// REMOVE
-		if (inputString.substr(0, 6).compare("remove") == 0)
+
+
+		// SEARCH
+		if (inputString.substr(0, 6).compare("search") == 0)
 		{
 			// Validate that a space follows the command
-			if (inputString.substr(6, 2).compare(" \"") != 0 ||
-				inputString.substr(inputString.length() - 10, 2).compare("\" ") != 0)
+			if (inputString.substr(6, 1).compare(" ") != 0)
 			{
 				cout << "unsuccessful" << endl;
 				continue;
 			}
 
-			string nodeName = inputString.substr(8, inputString.length() - 18);
+			if (inputString.substr(7, 1).compare("\"") == 0)
+			{
+				// Validate input ends in a quote
+				if (inputString.substr(inputString.length() - 1, 1) != "\"")
+				{
+					cout << "unsuccessful" << endl;
+					continue;
+				}
+				string nodeName = inputString.substr(8, inputString.length() - 7);
+				treeInstance.search(nodeName);
+				continue;
+			}
+
+			// Valid search(int) commands have a fixed length
+			if (inputString.length() != 15)
+			{
+				cout << "unsuccessful" << endl;
+				continue;
+			}
+
 			string nodeIdString = inputString.substr(inputString.length() - 8, 8);
 			int nodeIdInt;
 			try
@@ -64,7 +84,8 @@ int main()
 				cout << "unsuccessful" << endl;
 				continue;
 			}
-			treeInstance.insert(nodeName, nodeIdInt);
+
+			treeInstance.search(nodeIdInt);
 			continue;
 		}
 
