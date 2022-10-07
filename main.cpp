@@ -122,6 +122,30 @@ int main()
 			continue;
 		}
 
+		// PRINT_IN_ORDER
+		if (inputString.substr(0, 12).compare("printInorder") == 0)
+		{
+			treeInstance.printInorder();
+		}
+
+		// PRINT_PRE_ORDER
+		if (inputString.substr(0, 13).compare("printPreorder") == 0)
+		{
+			treeInstance.printPreorder();
+		}
+
+		// PRINT_POST_ORDER
+		if (inputString.substr(0, 14).compare("printPostorder") == 0)
+		{
+			treeInstance.printPostorder();
+		}
+
+		// PRINT_LEVEL_COUNT
+		if (inputString.substr(0, 15).compare("printLevelCount") == 0)
+		{
+			treeInstance.printLevelCount();
+		}
+
 		// INVALID
 		cout << "unsuccessful" << endl;
 	 }

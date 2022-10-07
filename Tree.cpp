@@ -1,7 +1,8 @@
 #include"Tree.h"
 
 // TODO: make the proper things private, bruhhh
-// TODO: check for any test couts
+// TODO: check for any test couts, TOdo's
+// TODO: make destructors
 
 Tree::Tree()
 {
@@ -526,6 +527,11 @@ bool Tree::remove(int id)
 
 bool Tree::search(int id)
 {
+	if (myRoot == nullptr)
+	{
+		cout << "unsuccessful" << endl;
+		return false;
+	}
 	if (myRoot->myId == id)
 	{
 		cout << myRoot->myName << endl;
