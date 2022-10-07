@@ -4,6 +4,35 @@ using namespace std;
 
 int main()
 {
+	Tree treeInstance;
+
+	int commandCount;
+	cin >> commandCount;
+
+	for (int i = 0; i < commandCount; i++)
+	{
+		string inputString;
+		cin >> inputString;
+
+		// INSERT
+		if (inputString.substr(0, 6).compare("insert") == 0)
+		{
+			// Validate that a space and double quote surround the name
+			if (inputString.substr(6, 2).compare(" \"") != 0 ||
+				inputString.substr(inputString.length() - 10, 2).compare("\" ") != 0)
+			{
+				cout << "unsuccessful" << endl;
+				continue;
+			}
+
+			string nodeName = inputString.substr(8, inputString.length() - 18);
+			string nodeId = inputString.substr(inputString.length() - 8);
+		}
+	}
+
+
+
+	/*
 	Tree myTree;
 	myTree.insert("five", 5);
 	myTree.insert("one", 1);
@@ -31,4 +60,5 @@ int main()
 	myTree.printLevelCount();
 
 	return 0;
+	*/
 }

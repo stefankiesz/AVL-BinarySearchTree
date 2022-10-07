@@ -667,7 +667,6 @@ void Tree::removeInorder(int n)
 	if (removeInorderHelper(myRoot, n) >= 0){ cout << "unsuccessful" << endl; }
 }
 
-
 void balanceTree(Node* root)
 {
 	if (root != nullptr)
@@ -675,7 +674,6 @@ void balanceTree(Node* root)
 		balanceTree(root->left);
 	}
 }
-
 
 
 
