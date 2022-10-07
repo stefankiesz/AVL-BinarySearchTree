@@ -205,7 +205,6 @@ Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
 	}
 }
 
-// TODO: update node height upon node removal
 bool Tree::remove(int id)
 {
 
