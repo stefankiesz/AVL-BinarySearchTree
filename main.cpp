@@ -42,7 +42,37 @@ int main()
 			continue;
 		}
 
+		// REMOVE
+		if (inputString.substr(0, 6).compare("remove") == 0)
+		{
+			// Valid remove() commands have a fixed length
+			if (inputString.length() != 15)
+			{
+				cout << "unsuccessful" << endl;
+				continue;
+			}
 
+			// Validate that a space follows the command
+			if (inputString.substr(6, 1).compare(" ") != 0)
+			{
+				cout << "unsuccessful" << endl;
+				continue;
+			}
+
+			string nodeIdString = inputString.substr(7, 8);
+			int nodeIdInt;
+			try
+			{
+				nodeIdInt = stoi(nodeIdString);
+			}
+			catch (const invalid_argument& e) {
+				cout << "unsuccessful" << endl;
+				continue;
+			}
+
+			treeInstance.remove(nodeIdInt);
+			continue;
+		}
 
 		// SEARCH
 		if (inputString.substr(0, 6).compare("search") == 0)
