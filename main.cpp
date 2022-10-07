@@ -10,6 +10,9 @@ int main()
 	cin >> commandCount;
 	cin.ignore();
 
+	// TODO: use ASCII to validate that all ID input are numbers
+
+
 	for (int i = 0; i < commandCount; i++)
 	{
 		string inputString;
