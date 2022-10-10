@@ -716,16 +716,46 @@ void Tree::leftRot(Node* root)
 void Tree::rightLeftRot(Node* root)
 {
 	cout << "RL rot called" << endl;
+	rightRot(root->right);
+	leftRot(root);
 }
 
 void Tree::rightRot(Node* root)
 {
 	cout << "right rot called" << endl;
+	Node* rootParent = traversal(myRoot, root->myId);
+	Node* midNode = root->left;
+	if (root == myRoot)
+	{
+		myRoot = midNode;
+	}
+	root->left = root->left->right;
+	midNode->right = root;
+	if (rootParent != nullptr && rootParent->left == root)
+	{
+		rootParent->left = midNode;
+	}
+	else if (rootParent != nullptr && rootParent->right == root)
+	{
+		rootParent->right = midNode;
+	}
+
+	// Change the heights:
+	midNode->myHeight = root->myHeight - 1;
+	if (root->left == nullptr)
+	{
+		if (root->right == nullptr) { root->myHeight = 0; }
+		else { root->myHeight = root->right->myHeight; }
+	}
+	else if (root->right == nullptr) { root->myHeight = root->left->myHeight; }
+	else { root->myHeight = max(root->left->myHeight, root->right->myHeight) + 1; }
 }
 
 void Tree::leftRightRot(Node* root)
 {
 	cout << "LR rot called" << endl;
+	leftRot(root->left);
+	rightRot(root);
 }
 
 void Tree::balanceTree(Node* root)
@@ -734,6 +764,8 @@ void Tree::balanceTree(Node* root)
 	{
 		balanceTree(root->left);
 		balanceTree(root->right);
+		cout << root->myName << " is getting checked" << endl;
+
 
 		// Check if "root" is unbalanced
 		if ((root->left != nullptr || root->right != nullptr) &&
@@ -742,20 +774,25 @@ void Tree::balanceTree(Node* root)
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight > 1 )||
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight < -1)))
 		{
+			cout << root->myName << " is unbalanced" << endl;
 			// Check what rotation case it is:
 			// Right ____ case
-			if (root->left == nullptr || root->right->myHeight > root->left->myHeight)
+			if (root->left == nullptr ||
+				(root->right != nullptr && root->right->myHeight > root->left->myHeight))
 			{
+				cout << "it's a right____ case" << endl;
 				// Right Left case
 				if (root->right->left != nullptr &&
 					(root->right->right == nullptr || 
 						root->right->right->myHeight < root->right->left->myHeight))
 				{
+					cout << "calling rightLeftRot" << endl;
 					rightLeftRot(root);
 				}
 				// Right Right case
 				else
 				{
+					cout << "calling leftRot" << endl;
 					leftRot(root);
 				}
 			}
@@ -779,8 +816,6 @@ void Tree::balanceTree(Node* root)
 	}
 }
 
-
-
 void Tree::heightsInorderHelper(Node* root, string& output)
 {
 	if (root != nullptr)
@@ -790,7 +825,6 @@ void Tree::heightsInorderHelper(Node* root, string& output)
 		heightsInorderHelper(root->right, output);
 	}
 }
-
 
 void Tree::printHeightsInorder()
 {

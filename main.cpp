@@ -7,22 +7,6 @@ int main()
 
 	Tree treeInstance;
 
-	treeInstance.insert("two", 2);
-	treeInstance.insert("one", 1);
-	treeInstance.insert("four", 4);
-	treeInstance.insert("three", 3);
-	treeInstance.insert("five", 5);
-	treeInstance.insert("six", 6);
-
-	cout << "root: " << treeInstance.myRoot->myName << endl;
-	cout << "left: " << treeInstance.myRoot->left->myName << endl;
-	cout << "right: " << treeInstance.myRoot->right->myName << endl;
-	cout << treeInstance.myRoot->left->left->myName << endl;
-	cout << treeInstance.myRoot->left->right->myName << endl;
-	cout << treeInstance.myRoot->right->right->myName << endl;
-
-
-
 	int commandCount;
 	cin >> commandCount;
 	cin.ignore();
@@ -180,34 +164,4 @@ int main()
 		cout << "unsuccessful_______" << endl;
 	 }
 
-
-	/*
-	Tree myTree;
-	myTree.insert("five", 5);
-	myTree.insert("one", 1);
-	myTree.insert("ten", 10);
-	myTree.insert("seven", 7);
-	myTree.insert("six", 6);
-	myTree.insert("fifteen", 15);
-	myTree.insert("twelve", 12);
-	myTree.insert("eleven", 11);
-	myTree.insert("sixteen", 16);
-	myTree.insert("seventeen", 17);
-	myTree.insert("eighteen", 18);
-
-
-	myTree.printInorder();
-	myTree.printHeightsInorder();
-
-	myTree.remove(10);
-
-	myTree.printInorder();
-	myTree.printHeightsInorder();
-
-
-	cout << "printLevelCount() output: ";
-	myTree.printLevelCount();
-
-	return 0;
-	*/
 }
