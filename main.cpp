@@ -47,7 +47,7 @@ int main()
 		}
 
 		// REMOVE
-		if (inputString.substr(0, 6).compare("remove") == 0)
+		if (inputString.substr(0, 6).compare("remove") == 0 && inputString.substr(6, 1).compare(" ") == 0)
 		{
 			// Valid remove() commands have a fixed length
 			if (inputString.length() != 15)
@@ -151,10 +151,17 @@ int main()
 			continue;
 		}
 
-		//
+		// TODO: check for proper format
+		// REMOVE_IN_ORDER
+		if (inputString.substr(0, 13).compare("removeInorder") == 0)
+		{
+			int numberToRemove = stoi(inputString.substr(14, 8));
+			treeInstance.removeInorder(numberToRemove);
+			continue;
+		}
 
 		// INVALID
-		cout << "unsuccessful" << endl;
+		cout << "unsuccessful_______" << endl;
 	 }
 
 
