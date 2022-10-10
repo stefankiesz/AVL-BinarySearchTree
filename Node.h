@@ -1,6 +1,9 @@
 #pragma once
-#include"include.h"
+#include"Node.h"
+#include<string>
+#include<iostream>
 
+using namespace std;
 class Node
 {
 public:

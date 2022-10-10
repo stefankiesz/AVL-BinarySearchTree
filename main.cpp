@@ -12,7 +12,7 @@ int main()
 	cin.ignore();
 
 	// TODO: use ASCII to validate that all ID input are numbers
-
+	// TODO: finish string validation for all input commands
 
 	for (int i = 0; i < commandCount; i++)
 	{
@@ -127,25 +127,31 @@ int main()
 		if (inputString.substr(0, 12).compare("printInorder") == 0)
 		{
 			treeInstance.printInorder();
+			continue;
 		}
 
 		// PRINT_PRE_ORDER
 		if (inputString.substr(0, 13).compare("printPreorder") == 0)
 		{
 			treeInstance.printPreorder();
+			continue;
 		}
 
 		// PRINT_POST_ORDER
 		if (inputString.substr(0, 14).compare("printPostorder") == 0)
 		{
 			treeInstance.printPostorder();
+			continue;
 		}
 
 		// PRINT_LEVEL_COUNT
 		if (inputString.substr(0, 15).compare("printLevelCount") == 0)
 		{
 			treeInstance.printLevelCount();
+			continue;
 		}
+
+		//
 
 		// INVALID
 		cout << "unsuccessful" << endl;

@@ -627,7 +627,6 @@ void Tree::printInorder()
 	string output;
 	inorderHelper(myRoot, output);
 	cout << output.substr(0, output.length() - 2 ) << endl;
-	cout << endl;
 }
 
 void Tree::printPreorder()
@@ -635,7 +634,6 @@ void Tree::printPreorder()
 	string output;
 	preorderHelper(myRoot, output);
 	cout << output.substr(0, output.length() - 2) << endl;
-	cout << endl;
 }
 
 void Tree::printPostorder()
@@ -643,7 +641,6 @@ void Tree::printPostorder()
 	string output;
 	postorderHelper(myRoot, output);
 	cout << output.substr(0, output.length() - 2) << endl;
-	cout << endl;
 }
 
 int Tree::levelHelper(Node* root, int level)
