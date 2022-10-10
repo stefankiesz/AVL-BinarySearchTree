@@ -37,11 +37,11 @@ int main()
 			{
 				nodeIdInt = stoi(nodeIdString);
 			}
-			catch (const invalid_argument& e) {
+			catch (const invalid_argument& e)
+			{
 				cout << "unsuccessful" << endl;
 				continue;
 			}
-
 			treeInstance.insert(nodeName, nodeIdInt);
 			continue;
 		}

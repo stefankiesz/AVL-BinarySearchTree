@@ -99,6 +99,7 @@ bool Tree::insert(string name, int id)
 	if (inserter(myRoot, name, id, newLevel))
 	{
 		cout << "successful" << endl;
+		balanceTree();
 		return true;
 	}
 	cout << "unsuccessful" << endl;
@@ -681,11 +682,100 @@ void Tree::removeInorder(int n)
 	if (removeInorderHelper(myRoot, n) >= 0){ cout << "unsuccessful" << endl; }
 }
 
+void Tree::leftRot(Node* root)
+{
+	cout << "left rotation called" << endl;
+	Node* rootParent = traversal(myRoot, root->myId);
+	Node* midNode = root->right;
+	if (root == myRoot)
+	{
+		myRoot = midNode;
+	}
+	root->right = root->right->left;
+	midNode->left = root;
+	if (rootParent != nullptr && rootParent->left == root)
+	{
+		rootParent->left = midNode;
+	}
+	else if (rootParent != nullptr && rootParent->right == root)
+	{
+		rootParent->right = midNode;
+	}
+
+	// Change the heights:
+	midNode->myHeight = root->myHeight - 1;
+	if (root->left == nullptr)
+	{
+		if (root->right == nullptr) { root->myHeight = 0; }
+		else { root->myHeight = root->right->myHeight; }
+	}
+	else if (root->right == nullptr) { root->myHeight = root->left->myHeight; }
+	else { root->myHeight = max(root->left->myHeight, root->right->myHeight) + 1; }
+}
+
+void Tree::rightLeftRot(Node* root)
+{
+	cout << "RL rot called" << endl;
+}
+
+void Tree::rightRot(Node* root)
+{
+	cout << "right rot called" << endl;
+}
+
+void Tree::leftRightRot(Node* root)
+{
+	cout << "LR rot called" << endl;
+}
+
 void balanceTree(Node* root)
 {
 	if (root != nullptr)
 	{
 		balanceTree(root->left);
+		balanceTree(root->right);
+
+		// Check if "root" is unbalanced
+		if ((root->left != nullptr || root->right != nullptr) &&
+			((root->left == nullptr && root-> right != nullptr && root->right->myHeight > 1) || 
+			(root->right == nullptr && root->left != nullptr && root->left->myHeight > 1) ||
+			root->left->myHeight - root->right->myHeight > 1 ||
+			root->left->myHeight - root->right->myHeight < -1))
+		{
+			// Check what rotation case it is:
+			// Right ____ case
+			if (root->left == nullptr || root->right->myHeight > root->left->myHeight)
+			{
+				// Right Left case
+				if (root->right->left != nullptr &&
+					(root->right->right == nullptr || 
+						root->right->right->myHeight < root->right->left->myHeight))
+				{
+					rightLeftRot(root);
+				}
+				// Right Right case
+				else
+				{
+					leftRot(root);
+				}
+			}
+			// Left ____ case
+			else
+			{
+				// Left Right case
+				if (root->left->right != nullptr &&
+					(root->left->left == nullptr ||
+						root->left->left->myHeight < root->left->right->myHeight))
+				{
+					leftRightRot(root);
+				}
+				// Left Left case
+				else
+				{
+					rightRot(root);
+				}
+			}
+		}
 	}
 }
 

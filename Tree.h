@@ -28,6 +28,12 @@ public:
 	int removeInorderHelper(Node* root, int n);
 	void removeInorder(int n);
 
+	void leftRot(Node* root);
+	void rightLeftRot(Node* root);
+	void rightRot(Node* root);
+	void leftRightRot(Node* root);
+
+
 	void balanceTree();
 
 	void printHeightsInorder();
