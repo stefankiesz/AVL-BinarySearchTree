@@ -684,7 +684,6 @@ void Tree::removeInorder(int n)
 
 void Tree::leftRot(Node* root)
 {
-	cout << "left rotation called" << endl;
 	Node* rootParent = traversal(myRoot, root->myId);
 	Node* midNode = root->right;
 	if (root == myRoot)
@@ -715,14 +714,12 @@ void Tree::leftRot(Node* root)
 
 void Tree::rightLeftRot(Node* root)
 {
-	cout << "RL rot called" << endl;
 	rightRot(root->right);
 	leftRot(root);
 }
 
 void Tree::rightRot(Node* root)
 {
-	cout << "right rot called" << endl;
 	Node* rootParent = traversal(myRoot, root->myId);
 	Node* midNode = root->left;
 	if (root == myRoot)
@@ -753,7 +750,6 @@ void Tree::rightRot(Node* root)
 
 void Tree::leftRightRot(Node* root)
 {
-	cout << "LR rot called" << endl;
 	leftRot(root->left);
 	rightRot(root);
 }
@@ -764,7 +760,6 @@ void Tree::balanceTree(Node* root)
 	{
 		balanceTree(root->left);
 		balanceTree(root->right);
-		cout << root->myName << " is getting checked" << endl;
 
 
 		// Check if "root" is unbalanced
@@ -774,25 +769,21 @@ void Tree::balanceTree(Node* root)
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight > 1 )||
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight < -1)))
 		{
-			cout << root->myName << " is unbalanced" << endl;
 			// Check what rotation case it is:
 			// Right ____ case
 			if (root->left == nullptr ||
 				(root->right != nullptr && root->right->myHeight > root->left->myHeight))
 			{
-				cout << "it's a right____ case" << endl;
 				// Right Left case
 				if (root->right->left != nullptr &&
 					(root->right->right == nullptr || 
 						root->right->right->myHeight < root->right->left->myHeight))
 				{
-					cout << "calling rightLeftRot" << endl;
 					rightLeftRot(root);
 				}
 				// Right Right case
 				else
 				{
-					cout << "calling leftRot" << endl;
 					leftRot(root);
 				}
 			}
