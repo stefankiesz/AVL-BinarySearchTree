@@ -160,7 +160,7 @@ int main()
 	myTree.insert("seven", 7);
 	myTree.insert("six", 6);
 	myTree.insert("fifteen", 15);
-	myTree.insert("twerlve", 12);
+	myTree.insert("twelve", 12);
 	myTree.insert("eleven", 11);
 	myTree.insert("sixteen", 16);
 	myTree.insert("seventeen", 17);

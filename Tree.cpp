@@ -563,7 +563,19 @@ bool Tree::searchHelper(Node* root, string name, bool found)
 		if (root->myName.compare(name) == 0)
 		{
 			found = true;
-			cout << root->myId << endl;
+
+			int maxCheck = 10000000;
+			string zerosString = "";
+			while (true)
+			{
+				if (root->myId < maxCheck)
+				{
+					zerosString += "0";
+				}
+				else { break; }
+				maxCheck /= 10;
+			}
+			cout << zerosString << root->myId << endl;
 		}
 		found = searchHelper(root->right, name, found);
 	}
