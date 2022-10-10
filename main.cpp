@@ -8,8 +8,19 @@ int main()
 	Tree treeInstance;
 
 	treeInstance.insert("two", 2);
+	treeInstance.insert("one", 1);
 	treeInstance.insert("four", 4);
+	treeInstance.insert("three", 3);
 	treeInstance.insert("five", 5);
+	treeInstance.insert("six", 6);
+
+	cout << "root: " << treeInstance.myRoot->myName << endl;
+	cout << "left: " << treeInstance.myRoot->left->myName << endl;
+	cout << "right: " << treeInstance.myRoot->right->myName << endl;
+	cout << treeInstance.myRoot->left->left->myName << endl;
+	cout << treeInstance.myRoot->left->right->myName << endl;
+	cout << treeInstance.myRoot->right->right->myName << endl;
+
 
 
 	int commandCount;
