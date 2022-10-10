@@ -99,7 +99,7 @@ bool Tree::insert(string name, int id)
 	if (inserter(myRoot, name, id, newLevel))
 	{
 		cout << "successful" << endl;
-		balanceTree();
+		balanceTree(myRoot);
 		return true;
 	}
 	cout << "unsuccessful" << endl;
@@ -728,7 +728,7 @@ void Tree::leftRightRot(Node* root)
 	cout << "LR rot called" << endl;
 }
 
-void balanceTree(Node* root)
+void Tree::balanceTree(Node* root)
 {
 	if (root != nullptr)
 	{
@@ -739,8 +739,8 @@ void balanceTree(Node* root)
 		if ((root->left != nullptr || root->right != nullptr) &&
 			((root->left == nullptr && root-> right != nullptr && root->right->myHeight > 1) || 
 			(root->right == nullptr && root->left != nullptr && root->left->myHeight > 1) ||
-			root->left->myHeight - root->right->myHeight > 1 ||
-			root->left->myHeight - root->right->myHeight < -1))
+			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight > 1 )||
+			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight < -1)))
 		{
 			// Check what rotation case it is:
 			// Right ____ case

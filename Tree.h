@@ -34,7 +34,7 @@ public:
 	void leftRightRot(Node* root);
 
 
-	void balanceTree();
+	void balanceTree(Node* root);
 
 	void printHeightsInorder();
 	void heightsInorderHelper(Node* root, string& output);

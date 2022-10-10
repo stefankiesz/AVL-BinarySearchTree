@@ -7,6 +7,11 @@ int main()
 
 	Tree treeInstance;
 
+	treeInstance.insert("two", 2);
+	treeInstance.insert("four", 4);
+	treeInstance.insert("five", 5);
+
+
 	int commandCount;
 	cin >> commandCount;
 	cin.ignore();
