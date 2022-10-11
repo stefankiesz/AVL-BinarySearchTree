@@ -161,7 +161,7 @@ int main()
 		}
 
 		// INVALID
-		cout << "unsuccessful_______" << endl;
+		cout << "unsuccessful" << endl;
 	 }
 
 }

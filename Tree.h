@@ -2,10 +2,9 @@
 #include"Node.h"
 class Tree
 {
+	Node* myRoot;
 public:
 	Tree();
-
-	Node* myRoot;
 
 	bool inserter(Node* root, string name, int id, bool& newLevel);
 	bool insert(string name, int id);
