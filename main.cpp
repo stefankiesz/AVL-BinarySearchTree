@@ -7,29 +7,6 @@ int main()
 
 	Tree treeInstance;
 
-	treeInstance.insert("test", 7);
-	treeInstance.insert("test", 8);
-	treeInstance.insert("test", 5);
-	treeInstance.insert("test", 3);
-	treeInstance.insert("test", 6);
-	treeInstance.insert("test", 9);
-	treeInstance.insert("test", 10);
-	treeInstance.insert("test", 2);
-	treeInstance.insert("test", 4);
-	treeInstance.insert("test", 11);
-	treeInstance.insert("test", 1);
-
-	cout << treeInstance.myRoot->myId << endl;
-	cout << treeInstance.myRoot->left->myId << endl;
-	cout << treeInstance.myRoot->left->left->myId << endl;
-	cout << treeInstance.myRoot->left->right->myId << endl;
-	cout << treeInstance.myRoot->left->left->left->myId << endl;
-	cout << treeInstance.myRoot->left->right->left->myId << endl;
-	cout << treeInstance.myRoot->left->right->right->myId << endl;
-
-	cout << "heights: " << endl;
-	treeInstance.printHeightsInorder();
-
 	int commandCount;
 	cin >> commandCount;
 	cin.ignore();

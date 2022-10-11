@@ -89,7 +89,7 @@ bool Tree::insert(string name, int id)
 			return false;
 		}
 	}
-	// TODO: allow for values smaller than 10000000, parse the zeros away, add them back when printing
+
 	if (id < 0 || id > 99999999)
 	{
 		cout << "unsuccessful" << endl;
@@ -171,11 +171,9 @@ Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
 			return root;
 		}
 		Node* returnNode = traversal(root->left, id, decrementHeight);
-		cout << "Names::: " << root->myName << endl;
 		if (decrementHeight && (root->right == nullptr || root->myHeight > root->right->myHeight + 1) &&
 			(root->left == nullptr || root->myHeight > root->left->myHeight + 1))
 		{
-			cout << "yep" << endl;
 			root->myHeight--;
 		}
 		return returnNode;
@@ -700,8 +698,8 @@ void Tree::leftRot(Node* root)
 
 	// Change the heights:
 	midNode->myHeight = root->myHeight - 1;
-	cout << "rootHeight: " << root->myHeight << endl;
-	cout << "changing heitts" << endl;
+	bool newBool = false;
+	traversal(myRoot, midNode->myId, newBool);
 	if (root->left == nullptr)
 	{
 		if (root->right == nullptr) { root->myHeight = 1; }
@@ -709,8 +707,6 @@ void Tree::leftRot(Node* root)
 	}
 	else if (root->right == nullptr) { root->myHeight = root->left->myHeight; }
 	else { root->myHeight = max(root->left->myHeight, root->right->myHeight) + 1; }
-	cout << "rootHeight: " << root->myHeight << endl;
-
 }
 
 void Tree::rightLeftRot(Node* root)
@@ -740,6 +736,8 @@ void Tree::rightRot(Node* root)
 
 	// Change the heights:
 	midNode->myHeight = root->myHeight - 1;
+	bool newBool = false;
+	traversal(myRoot, midNode->myId, newBool);
 	if (root->left == nullptr)
 	{
 		if (root->right == nullptr) { root->myHeight = 1; }
@@ -770,7 +768,6 @@ void Tree::balanceTree(Node* root)
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight > 1 )||
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight < -1)))
 		{
-			cout << "unbalanced" << endl;
 			// Check what rotation case it is:
 			// Right ____ case
 			if (root->left == nullptr ||
@@ -824,5 +821,4 @@ void Tree::printHeightsInorder()
 	string output;
 	heightsInorderHelper(myRoot, output);
 	cout << output.substr(0, output.length() - 2) << endl;
-	cout << endl;
 }
