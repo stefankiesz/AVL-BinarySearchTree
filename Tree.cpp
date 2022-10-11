@@ -110,7 +110,6 @@ bool Tree::insert(string name, int id)
 // it searches for the id's parent node;
 // root should be the search tree's root
 // returns nullptr if not found or if the node is the tree's root
-// TODO: will make it also update the Nodes' height members
 Node* Tree::traversal(Node* root, int id)
 {
 	if (root == nullptr)
@@ -146,7 +145,6 @@ Node* Tree::traversal(Node* root, int id)
 		return traversal(root->right, id);
 	}
 }
-
 Node* Tree::traversal(Node* root, int id, bool& decrementHeight)
 {
 	if (root == nullptr)
@@ -654,7 +652,6 @@ int Tree::levelHelper(Node* root, int level)
 	return level;
 }
 
-// TODO: make sure this uses correct starting point: 0 or 1?
 void Tree::printLevelCount()
 {
 	cout << levelHelper(myRoot, 0) << endl;
@@ -703,13 +700,17 @@ void Tree::leftRot(Node* root)
 
 	// Change the heights:
 	midNode->myHeight = root->myHeight - 1;
+	cout << "rootHeight: " << root->myHeight << endl;
+	cout << "changing heitts" << endl;
 	if (root->left == nullptr)
 	{
-		if (root->right == nullptr) { root->myHeight = 0; }
+		if (root->right == nullptr) { root->myHeight = 1; }
 		else { root->myHeight = root->right->myHeight; }
 	}
 	else if (root->right == nullptr) { root->myHeight = root->left->myHeight; }
 	else { root->myHeight = max(root->left->myHeight, root->right->myHeight) + 1; }
+	cout << "rootHeight: " << root->myHeight << endl;
+
 }
 
 void Tree::rightLeftRot(Node* root)
@@ -741,7 +742,7 @@ void Tree::rightRot(Node* root)
 	midNode->myHeight = root->myHeight - 1;
 	if (root->left == nullptr)
 	{
-		if (root->right == nullptr) { root->myHeight = 0; }
+		if (root->right == nullptr) { root->myHeight = 1; }
 		else { root->myHeight = root->right->myHeight; }
 	}
 	else if (root->right == nullptr) { root->myHeight = root->left->myHeight; }
@@ -769,6 +770,7 @@ void Tree::balanceTree(Node* root)
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight > 1 )||
 			(root->left != nullptr && root->right != nullptr && root->left->myHeight - root->right->myHeight < -1)))
 		{
+			cout << "unbalanced" << endl;
 			// Check what rotation case it is:
 			// Right ____ case
 			if (root->left == nullptr ||

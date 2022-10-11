@@ -10,12 +10,15 @@ int main()
 	treeInstance.insert("test", 7);
 	treeInstance.insert("test", 8);
 	treeInstance.insert("test", 5);
+	treeInstance.printHeightsInorder();
 	treeInstance.insert("test", 3);
 	treeInstance.insert("test", 6);
 	treeInstance.insert("test", 9);
 	treeInstance.insert("test", 10);
+	treeInstance.printHeightsInorder();
 	treeInstance.insert("test", 2);
 	treeInstance.insert("test", 4);
+	treeInstance.printHeightsInorder();
 	treeInstance.insert("test", 11);
 	treeInstance.insert("test", 1);
 

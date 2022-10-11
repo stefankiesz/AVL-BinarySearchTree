@@ -3,9 +3,9 @@
 class Tree
 {
 public:
-	Node* myRoot;
-
 	Tree();
+
+	Node* myRoot;
 
 	bool inserter(Node* root, string name, int id, bool& newLevel);
 	bool insert(string name, int id);
@@ -27,19 +27,12 @@ public:
 	void printLevelCount();
 	int removeInorderHelper(Node* root, int n);
 	void removeInorder(int n);
-
 	void leftRot(Node* root);
 	void rightLeftRot(Node* root);
 	void rightRot(Node* root);
 	void leftRightRot(Node* root);
-
-
 	void balanceTree(Node* root);
-
 	void printHeightsInorder();
 	void heightsInorderHelper(Node* root, string& output);
-
-
-
 };
 
